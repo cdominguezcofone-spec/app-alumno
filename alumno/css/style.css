@@ -1,0 +1,136 @@
+:root {
+    --primary: #10B981;
+    --primary-hover: #059669;
+    --bg-color: #0F172A;
+    --card-bg: #1E293B;
+    --text-main: #F8FAFC;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    margin: 0;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px; /* Mobile first */
+}
+
+.card {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 1rem;
+}
+
+h2 {
+    color: var(--primary);
+    margin-top: 0;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #94A3B8;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #334155;
+    background-color: #0F172A;
+    color: white;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.btn-outline:hover {
+    background-color: rgba(16, 185, 129, 0.1);
+}
+
+#dashboard {
+    display: none;
+}
+
+.status-box {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    display: none;
+    text-align: center;
+    border: 1px solid #334155;
+}
+
+.status-box h3 {
+    margin: 0 0 0.5rem 0;
+    color: #60A5FA;
+}
+
+.status-box p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+#loading {
+    display: none;
+    text-align: center;
+    color: #FBBF24;
+    margin: 1rem 0;
+}
+
+.logout {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #94A3B8;
+    cursor: pointer;
+    text-decoration: underline;
+}

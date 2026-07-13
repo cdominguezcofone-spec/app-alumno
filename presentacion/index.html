@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase: Arquitectura de Redes y Aplicaciones Web</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="presentation-container">
+        
+        <!-- Slide 1: Título -->
+        <div class="slide active">
+            <div style="text-align: center;">
+                <h1>Redes y Aplicaciones Web</h1>
+                <p>De la Capa Física al Despliegue en la Nube</p>
+                <br><br>
+                <p style="color: rgba(255,255,255,0.6); font-size: 1.2rem;">Presiona las flechas ➔ o los botones abajo para continuar</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Arquitectura -->
+        <div class="slide">
+            <h2>Arquitectura del Sistema</h2>
+            <div class="grid-2">
+                <div>
+                    <ul>
+                        <li><span class="highlight">Recepción (Quiosco):</span> Registra alumnos y genera credenciales.</li>
+                        <li><span class="highlight">Alumno (Móvil QR):</span> Carga su perfil y consulta estado (notas/deuda).</li>
+                        <li><span class="highlight">Administración:</span> Carga las notas y deudas en la base central.</li>
+                        <li><span class="highlight">Base de Datos (API):</span> Google Sheets conecta todo.</li>
+                    </ul>
+                </div>
+                <div class="card-info">
+                    <p>Hoy construiremos el ecosistema completo: <strong>Dos Apps Frontends</strong> consumiendo la <strong>misma API</strong> en la red.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Capa Física -->
+        <div class="slide">
+            <h2>Actividad 1: Conexión Física P2P</h2>
+            <div class="grid-2">
+                <div>
+                    <p>Conectaremos directamente nuestras dos áreas principales usando una topología Punto a Punto.</p>
+                    <ul>
+                        <li><span class="highlight">PC 1:</span> Computadora de la Recepcionista.</li>
+                        <li><span class="highlight">PC 2:</span> Nodo Central (Administración).</li>
+                        <li><strong>Tarea:</strong> Conectar un único cable de red Ethernet uniendo ambas computadoras.</li>
+                    </ul>
+                </div>
+                <div style="text-align: center; font-size: 5rem;">
+                    💻 ↔️ 💻
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Capa Lógica -->
+        <div class="slide">
+            <h2>Actividad 2: IPs Estáticas para la Red Local</h2>
+            <div class="grid-2">
+                <div>
+                    <p>Para que ambas PCs se vean directamente, necesitan estar en la misma subred.</p>
+                    <div class="code-block">
+                        <strong>PC 1 (Recepción):</strong><br>
+                        IP: 192.168.1.10 - Máscara: 255.255.255.0<br><br>
+                        <strong>PC 2 (Nodo Central):</strong><br>
+                        IP: 192.168.1.11 - Máscara: 255.255.255.0
+                    </div>
+                </div>
+                <div class="card-info">
+                    <p><strong>Prueba:</strong> Abre la terminal (CMD) en la PC 1 y ejecuta <code>ping 192.168.1.11</code>. Si responde, ¡hay red!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Base de Datos / API -->
+        <div class="slide">
+            <h2>Actividad 3: La API Central en Google Sheets</h2>
+            <ul>
+                <li>Abre la carpeta <span class="highlight">api-drive/</span> y sigue los pasos del archivo <code>instrucciones.md</code>.</li>
+                <li>Crea un Sheets con las columnas: <span class="highlight">Fecha, Nombre, Usuario, Password, DatosExtra, Notas, Inasistencias, Deuda</span>.</li>
+                <li>Ve a <strong>Extensiones > Apps Script</strong>.</li>
+                <li>Pega el código de <code>api-drive/codigo.gs</code> (Maneja el alta desde recepción y las consultas del alumno).</li>
+                <li><strong>Implementar > Nueva implementación > Aplicación Web</strong> (Cualquier persona).</li>
+                <li><strong>¡Copia la URL de la API!</strong></li>
+            </ul>
+        </div>
+
+        <!-- Slide 6: Frontend y GitHub -->
+        <div class="slide">
+            <h2>Actividad 4: Desplegando las 2 Apps</h2>
+            <div class="grid-2">
+                <div>
+                    <p>Trabajaremos con las carpetas <span class="highlight">recepcion/</span> y <span class="highlight">alumno/</span>.</p>
+                    <ul>
+                        <li>Entra a <code>js/app.js</code> en cada carpeta y pega la URL de tu API.</li>
+                        <li>Sube ambas carpetas a tu repositorio en GitHub.</li>
+                        <li>Habilita <strong>GitHub Pages</strong>.</li>
+                    </ul>
+                </div>
+                <div class="card-info">
+                    <p><strong>El toque final:</strong><br>La app generará un <strong>Código QR genérico</strong>. Es la misma URL para todos, pero cada alumno verá sus propios datos al iniciar sesión.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Cierre -->
+        <div class="slide">
+            <div style="text-align: center;">
+                <h1>¡Prueba la Integración Final! 🚀</h1>
+                <p><strong>1. Recepción:</strong> Abre <code>recepcion/index.html</code> y registra un alumno (verás el QR).</p>
+                <p><strong>2. Alumno:</strong> Escanea el QR con tu celular y entra a la app con las credenciales.</p>
+                <p><strong>3. Administrador:</strong> Modifica la nota o deuda en Sheets y mira cómo se actualiza en el celular.</p>
+                <br>
+                <h2 style="border: none;">¡Excelente trabajo en equipo!</h2>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Controles -->
+    <div class="controls">
+        <button id="prevBtn" title="Anterior">←</button>
+        <button id="nextBtn" title="Siguiente">→</button>
+    </div>
+    
+    <div class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">7</span></div>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
