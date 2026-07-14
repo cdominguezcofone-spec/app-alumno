@@ -1,18 +1,13 @@
-// ALUMNOS: PEGUEN AQUÍ LA URL QUE LES DIO GOOGLE APPS SCRIPT
+// CONFIGURACIÓN: URL DE LA API
 const API_URL = 'https://script.google.com/macros/s/AKfycby3fnPCaeJSgWJelRiYFkhaFLE1lCqPQD749P4pKDhDZvUJ3d6ZiQFAoh3216qsiMw/exec';
 
 let currentUser = null;
 let currentPass = null;
 let userData = null;
 
-// Login Form Submit
+// 1. Manejo del Login
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    if(API_URL === 'PEGAR_AQUI_LA_URL_DE_APPS_SCRIPT') {
-        alert("⚠️ Falta configurar la API_URL en alumno/js/app.js.");
-        return;
-    }
-
     const u = document.getElementById('usuario').value;
     const p = document.getElementById('password').value;
 
@@ -35,7 +30,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
                 document.getElementById('datosExtra').value = result.datos_extra;
             }
         } else {
-            alert(result.msg);
+            alert(result.msg || "Error en el inicio de sesión");
         }
     } catch (error) {
         alert("Error conectando con la API.");
@@ -45,7 +40,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     }
 });
 
-// Actualizar Perfil Form Submit
+// 2. Actualizar Perfil (Datos Extra)
 document.getElementById('perfilForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const extra = document.getElementById('datosExtra').value;
@@ -66,13 +61,13 @@ document.getElementById('perfilForm').addEventListener('submit', async (e) => {
         const result = await response.json();
         alert(result.msg);
     } catch (error) {
-        alert("Error al actualizar.");
+        alert("Error al actualizar datos.");
     } finally {
         document.getElementById('loadingPerfil').style.display = 'none';
     }
 });
 
-// Ver estados
+// 3. Consulta de Estados (Notas, Asistencias, Deuda)
 async function verEstado(tipo) {
     const box = document.getElementById('statusBox');
     const title = document.getElementById('statusTitle');
@@ -81,13 +76,12 @@ async function verEstado(tipo) {
     box.style.display = 'block';
     val.innerText = 'Cargando...';
 
-    // Hacemos fetch para tener los datos más actualizados (por si administración cambió algo)
     try {
         const response = await fetch(`${API_URL}?action=estado_alumno&usuario=${currentUser}&password=${currentPass}`);
         const result = await response.json();
         
         if(result.status === 'success') {
-            userData = result; // actualizamos
+            userData = result; 
             if(tipo === 'notas') {
                 title.innerText = 'Tus Notas';
                 val.innerText = userData.notas || 'Sin cargar';
@@ -100,10 +94,11 @@ async function verEstado(tipo) {
             }
         }
     } catch(e) {
-        val.innerText = 'Error de red';
+        val.innerText = 'Error de conexión';
     }
 }
 
+// 4. Logout
 function logout() {
     currentUser = null;
     currentPass = null;
